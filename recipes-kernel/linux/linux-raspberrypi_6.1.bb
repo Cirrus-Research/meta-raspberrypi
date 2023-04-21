@@ -1,16 +1,15 @@
-LINUX_VERSION ?= "5.15.92"
-LINUX_RPI_BRANCH ?= "rpi-5.15.y"
-LINUX_RPI_KMETA_BRANCH ?= "yocto-5.15"
+LINUX_VERSION ?= "6.1.20"
+LINUX_RPI_BRANCH ?= "rpi-6.1.y"
+LINUX_RPI_KMETA_BRANCH ?= "yocto-6.1"
 
-SRCREV_machine = "14b35093ca68bf2c81bbc90aace5007142b40b40"
-SRCREV_meta = "509f4b9d68337f103633d48b621c1c9aa0dc975d"
+SRCREV_machine = "a1cd5351f431caf7cf472825aff0e1c66bf31de4"
+SRCREV_meta = "1a97a82e62ebf4ef3787768a1f5937e2d2f280ce"
 
 KMETA = "kernel-meta"
 
 SRC_URI = " \
     git://github.com/raspberrypi/linux.git;name=machine;branch=${LINUX_RPI_BRANCH};protocol=https \
     git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=${LINUX_RPI_KMETA_BRANCH};destsuffix=${KMETA} \
-    file://rpi.scc \
     file://powersave.cfg \
     file://android-drivers.cfg \
     "

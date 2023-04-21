@@ -98,7 +98,7 @@ PACKAGECONFIG[snappy] = "--enable-libsnappy,--disable-libsnappy,snappy"
 PACKAGECONFIG[udev] = "--enable-libudev,--disable-libudev,udev"
 PACKAGECONFIG[drm] = "--enable-libdrm,--disable-libdrm,libdrm"
 PACKAGECONFIG[epoxy] = "--enable-epoxy,--disable-epoxy,libepoxy"
-PACKAGECONFIG[v4l2] = "--enable-libv4l2 --enable-v4l2-m2m --enable-v4l2-request,,v4l-utils"
+PACKAGECONFIG[v4l2] = "--enable-libv4l2 --enable-v4l2-m2m,,v4l-utils"
 PACKAGECONFIG[mmal] = "--enable-omx --enable-omx-rpi --enable-mmal,,userland"
 PACKAGECONFIG[sand] = "--enable-sand,,"
 PACKAGECONFIG[rpi] = "--enable-rpi,,"
@@ -144,6 +144,9 @@ EXTRA_OECONF = " \
 "
 EXTRA_OECONF:append:linux-gnux32 = " --disable-asm"
 
+# Some patches introduce assembly files which needs preprocessing with
+# gcc e.g. src/libavutil/aarch64/rpi_sand_neon.S
+TOOLCHAIN = "gcc"
 # gold crashes on x86, another solution is to --disable-asm but thats more hacky
 # ld.gold: internal error in relocate_section, at ../../gold/i386.cc:3684
 LDFLAGS:append:x86 = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', ' -fuse-ld=bfd ', '', d)}"
